@@ -20,6 +20,6 @@ Copier le nom d'utilisateur renvoyé par l'API
 
 
 ## .ENV
-HUE_BRIDGE_IP => IP du Hue Bridge
+VUE_APP_HUE_BRIDGE_IP => IP du Hue Bridge
 
-HUE_USERNAME => nom d'utilisateur renvoyé par l'API
+VUE_APP_HUE_USERNAME => nom d'utilisateur renvoyé par l'API
