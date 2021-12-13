@@ -4,6 +4,7 @@
       Random color
     </button>
     <button class="btn btn-primary" @click="playRainbow">Rainbow</button>
+    <button class="btn btn-danger" @click="stop = true">Stop animation</button>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ export default {
     return {
       lightsIDS: [1, 2],
       stop: false,
+      rainbowHue: 0,
     }
   },
   methods: {
@@ -48,18 +50,20 @@ export default {
     },
 
     async playRainbow() {
-      let hue = 0
-      const sat = 200
+      this.stop = false
+      const sat = 255
       const bri = 255
       while (!this.stop) {
-        while (hue < 65535) {
+        if (this.rainbowHue < 65535) {
           this.lightsIDS.forEach((lightID) => {
-            this.controlLight(lightID, true, hue, sat, bri)
+            this.controlLight(lightID, true, this.rainbowHue, sat, bri)
           })
-          hue += 500
-          await new Promise((resolve) => setTimeout(resolve, 100))
+          this.rainbowHue += 500
+          await new Promise((resolve) => setTimeout(resolve, 500))
+          console.log(this.stop)
+        } else {
+          this.rainbowHue = 0
         }
-        hue = 0
       }
     },
   },
